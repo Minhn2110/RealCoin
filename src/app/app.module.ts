@@ -17,27 +17,37 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DashBoardComponent,
-    LayoutComponent,
-    HeaderComponent,
-    FooterComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    // 3. Initialize
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule, // firestore
-    // AngularFireAuthModule, // auth
-    // AngularFireStorageModule // storage
-    SweetAlert2Module.forRoot()
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      DashBoardComponent,
+      LayoutComponent,
+      HeaderComponent,
+      FooterComponent,
+      LoginComponent,
+      RegisterComponent,
+   ],
+   imports: [
+      BrowserModule,
+      AppRoutingModule,
+      FormsModule,
+      ReactiveFormsModule,
+      HttpClientModule,
+      AngularFireModule.initializeApp(firebaseConfig),
+      AngularFirestoreModule,
+      SweetAlert2Module.forRoot(),
+      NoopAnimationsModule
+   ],
+   providers: [],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
