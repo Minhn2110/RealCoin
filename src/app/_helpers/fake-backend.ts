@@ -5,9 +5,9 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User } from '../_models/user';
 
 
-const users: User[] = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
+const users: User[] = [{ id: 1, username: 'minh', password: 'minh', firstName: 'Test', lastName: 'User' }];
 
-@Injectable()
+@Injectable() 
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
@@ -42,7 +42,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                token: 'fake-jwt-token'
+                token: 'yCFHgGiBjX5HG4w4lhAIPtK3PJVo-EBbZn67o8aEa_AyRcA3F5M92oAH2aKWqJrgTVN2nhzESwSxPa750w1LA0NszgrUhprpRWeSf7BlvN2HZ-zJwmOGFJlFLjt-6hXrF76CLQfQ4HOZqySTFf7pSCtagazdowF_hV-iHxEHc2BYRLfpy40z04gTU89D6kXLu23X2Dn_nCfhlYXUIM8YToRZHQp3KUoKHhe83MkxSUJhq3JPp_1VCBgAPaHqqY62ILtO5RwQ1K56s-jVqW4sOZrOVJG4isLnIW2mczXUFGT5J8-QYB6IBrfZ7XSGVNiPqENN-spKAK_D7al5o-uq4E6ysr4zaElPsL0cBuRw-SxU9bFWL2aRLxTDjzh9VKhD76fUzPh3-niWHkyeKFmY79SiTEy725MMFesMr1DM15XbyPljf6fW-8bLnAnAtVtQcOohujWkuwLqVMQofinp6iWGPoi9pwPgRlorxgCMdxnNWlr-gVdNOhRpMme4ENKA',
             })
         }
 

@@ -3,6 +3,7 @@
         <i class="circle-preloader"></i>
     </div> -->
 <!-- ##### Header Area Start ##### -->
+<app-header></app-header>
 
 <section class="cryptos-blog-area section-padding-100">
     <div class="container">
@@ -63,21 +64,31 @@
                 </div>
             </div>
 
-             <!-- Binding Coin Prices -->
+            <!-- Binding Coin Prices -->
             <div class="col-12 col-lg-5">
                 <div class="cryptos-prices-table">
-                    <div class="single-price-table d-flex align-items-center justify-content-between" *ngFor="let item of coinData; let i = index">
+                    <h4>Select Data from Sources</h4>
+                    <mat-form-field>
+                        <mat-label>Coins</mat-label>
+                        <select matNativeControl required (selectionChange)="changeData($event)">
+                            <option value="coinCap">Coin Caps</option>
+                            <option value="cryptoCompare">Crypto Compares</option>
+                        </select>
+                    </mat-form-field>
+                    <div class="single-price-table d-flex align-items-center justify-content-between"
+                        *ngFor="let item of coinData; let i = index" [ngClass]="item.isActive == true ? 'success':'' ">
                         <div class="p-content d-flex align-items-center">
                             <span *ngIf="i < 9">0{{i + 1}}</span>
                             <span *ngIf="i > 8">{{i + 1}}</span>
                             <img [src]="item.image" alt="">
-                            <p>{{item.name}}
+                            <p>{{item.Symbol}}
                                 <!-- <span>{{item.symbol}}</span> -->
                             </p>
                         </div>
-                        <div class="price increase" [ngClass]="item.check == 'increase'? 'increase':'decrease'">
-                            <p>${{item.priceUsd | number}}</p>
+                        <div class="price" [ngClass]="item.check == true ? 'increase':''">
+                            <p>${{item.Price}}</p>
                         </div>
+                        <!-- [ngClass]="item.check == 'increase'? 'increase':'decrease'" -->
                     </div>
                 </div>
             </div>
@@ -91,8 +102,9 @@
             <div class="col-12">
                 <div class="newsletter-area mt-100">
                     <div class="section-heading text-center mx-auto">
-                        <h3>Upgrade to  <span>VIP Account</span></h3>
-                        <h6>Sign Up To Our VIP List And Get: First For New Coins, Exclusive Events & Offers, Expert Advice & How To’s win the markets.</h6>
+                        <h3>Upgrade to <span>VIP Account</span></h3>
+                        <h6>Sign Up To Our VIP List And Get: First For New Coins, Exclusive Events & Offers, Expert
+                            Advice & How To’s win the markets.</h6>
                     </div>
                     <form action="#" method="post">
                         <input type="email" name="email" placeholder="Subscribe to newsletter" autocomplete="off">
@@ -108,3 +120,4 @@
 
 </section>
 
+<app-footer></app-footer>

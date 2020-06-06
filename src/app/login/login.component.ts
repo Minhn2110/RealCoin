@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+    
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
   }
   get f() { return this.loginForm.controls; }
@@ -38,20 +40,24 @@ export class LoginComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
+      alert('invalid');
       return;
+    } else {
+      this.loading = true;
+      this.authenticationService.login(this.f.username.value, this.f.password.value)
+        .pipe(first())
+        .subscribe(
+          data => {
+            console.log(data);
+            // this.router.navigate([this.returnUrl]);
+            this.router.navigate(['/dashboard']);
+          },
+          error => {
+            console.log(error);
+            this.error = error;
+            this.loading = false;
+          });
     }
-
-    this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.error = error;
-          this.loading = false;
-        });
   }
 
 }

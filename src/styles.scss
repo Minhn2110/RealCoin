@@ -1351,26 +1351,26 @@ textarea:focus {
 // }
 
 @-webkit-keyframes success {
-  from { background-color: #00BFFF	; }
+  from { background-color: #ffaf02	; }
   to { background-color: inherit; }
 }
 @-moz-keyframes success {
-  from { background-color: #00BFFF	; }
+  from { background-color: #ffaf02	; }
   to { background-color: inherit; }
 }
 @-o-keyframes success {
-  from { background-color: #00BFFF	; }
+  from { background-color: #ffaf02	; }
   to { background-color: inherit; }
 }
 @keyframes success {
-  from { background-color: #00BFFF	; }
+  from { background-color: #ffaf02	; }
   to { background-color: inherit; }
 }
 .success {
-  -webkit-animation: success 1s ease-out 0ms 1; /* Safari 4+ */
-  -moz-animation:    success 1s ease-out 0ms 1; /* Fx 5+ */
-  -o-animation:      success 1s ease-out 0ms 1; /* Opera 12+ */
-  animation:         success 1s ease-out 0ms 1; /* IE 10+ */
+  -webkit-animation: success 0.5s ease-in; /* Safari 4+ */
+  -moz-animation:    success 0.5s ease-in; /* Fx 5+ */
+  -o-animation:      success 0.5s ease-in; /* Opera 12+ */
+  animation:         success 0.5s ease-in; /* IE 10+ */
 }
 
 .normal {
