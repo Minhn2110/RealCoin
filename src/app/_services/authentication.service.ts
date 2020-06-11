@@ -47,8 +47,8 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null); 
     }
-    register(Email: string, Password: string, ConfirmPassword: string) {
-        return this.http.post<any>(`https://t1809ecoinmarket20200608234615.azurewebsites.net/api/account/register`, { Email, Password, ConfirmPassword })
+    register(Email: string, Password: string, ConfirmPassword: string, FirstName: string, LastName:string) {
+        return this.http.post<any>(`https://t1809ecoinmarket20200608234615.azurewebsites.net/api/account/registerV1`, { Email, Password, ConfirmPassword, FirstName, LastName })
         .pipe(map(user => {
             console.log('register', user);
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -70,4 +70,9 @@ export class AuthenticationService {
       upgradeAccount(token: any): Observable<any> {
         return this.http.put<any>(`https://t1809ecoinmarket20200608234615.azurewebsites.net/api/rank`, { token });
       }
+      verifyAccount(Email: any, Code: any) {
+        return this.http.post<any>(`https://t1809ecoinmarket20200608234615.azurewebsites.net/api/account/ConfirmRegister`, { Email, Code }, {
+            withCredentials: true
+          });
+    }
 }

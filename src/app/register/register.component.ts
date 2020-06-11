@@ -26,6 +26,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
@@ -35,16 +37,19 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log(this.registerForm.controls);
-    this.authenticationService.register(this.f.email.value, this.f.password.value, this.f.password.value)
+    this.authenticationService.register(this.f.email.value, this.f.password.value, this.f.password.value, this.f.firstName.value, this.f.lastName.value)
     .pipe(first())
     .subscribe(
       data => {
         console.log(data);
         // this.router.navigate([this.returnUrl]);
-        this.showMsg('Register', 'Register Success')
+        this.showMsg('Register', data)
         setTimeout(() => {
-          this.router.navigate(['/login']);
+          this.verifyMsg();
         }, 2100);
+        // setTimeout(() => {
+        //   this.router.navigate(['/login']);
+        // }, 2100);
       },
       error => {
         this.error = error.Message;
@@ -79,6 +84,32 @@ export class RegisterComponent implements OnInit {
       if (result.dismiss === swal.DismissReason.timer) {
         console.log('I was closed by the timer')
       }
+    })
+  }
+  verifyMsg() {
+    swal.fire({
+      title: 'Please submit your code',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Submit',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !swal.isLoading()
+    }).then((result) => {
+      console.log('result', result)
+      if(result.value) {
+        this.authenticationService.verifyAccount(this.f.email.value, result.value).subscribe(res => console.log('res', res));
+      } else {
+        this.showMsg('Invalid', 'No code send');
+      }
+      // if (result.value) {
+      //   swal.fire({
+      //     title: `${result.value.login}'s avatar`,
+      //     imageUrl: result.value.avatar_url
+      //   })
+      // }
     })
   }
 
