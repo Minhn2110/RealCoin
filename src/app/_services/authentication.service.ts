@@ -29,10 +29,10 @@ export class AuthenticationService {
         //         return user;
         //     }));
         let model = "username=" + username + "&password=" + password + "&grant_type=" + "password";
-            return this.http.post<any>(`https://localhost:44361/Token`,  model, {
-                headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                }
+            return this.http.post<any>(`https://t1809ecoinmarket20200608234615.azurewebsites.net/token`,  model, {
+                // headers: {
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                // }
               })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -45,10 +45,10 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
+        this.currentUserSubject.next(null); 
     }
     register(Email: string, Password: string, ConfirmPassword: string) {
-        return this.http.post<any>(`https://localhost:44361/api/Account/Register`, { Email, Password, ConfirmPassword })
+        return this.http.post<any>(`https://t1809ecoinmarket20200608234615.azurewebsites.net/api/account/register`, { Email, Password, ConfirmPassword })
         .pipe(map(user => {
             console.log('register', user);
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -57,4 +57,17 @@ export class AuthenticationService {
             return user;
         }));
     }
+    getArticle(): Observable<any> {
+        // return this.http.get<any>(`https://t1809ecoinmarket20200608234615.azurewebsites.net/api/posts`);
+        return this.http.get<any>(`https://t1809ecoinmarket20200608234615.azurewebsites.net/api/posts`, {
+            // headers: {
+            // 'Content-Type': 'application/json',
+            // 'Accept': 'application/json',
+            // 'Access-Control-Allow-Origin': 'http://localhost:8888/'
+            // }
+          });
+      }
+      upgradeAccount(token: any): Observable<any> {
+        return this.http.put<any>(`https://t1809ecoinmarket20200608234615.azurewebsites.net/api/rank`, { token });
+      }
 }

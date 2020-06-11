@@ -1334,3 +1334,45 @@ export const fakeData2 = {
     ],
     "timestamp": 1533581088278
 }
+
+export const article = [
+    {
+        "$id": "1",
+        "Id": 1,
+        "Title": "normal 01",
+        "PostedUser": "832e30e0-6e1d-4865-bf0e-bb77cbdea39e",
+        "Thumbnail": "https://i.picsum.photos/id/663/200/300.jpg",
+        "Content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
+        "PostRank": 1,
+        "Status": 0,
+        "CreatedAt": null,
+        "UpdatedAt": null,
+        "DeletedAt": null
+    },
+    {
+        "$id": "2",
+        "Id": 2,
+        "Title": "normal 02",
+        "PostedUser": "832e30e0-6e1d-4865-bf0e-bb77cbdea39e",
+        "Thumbnail": "https://i.picsum.photos/id/237/200/300.jpg",
+        "Content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
+        "PostRank": 1,
+        "Status": 0,
+        "CreatedAt": null,
+        "UpdatedAt": null,
+        "DeletedAt": null
+    },
+    {
+        "$id": "3",
+        "Id": 3,
+        "Title": "vip 01",
+        "PostedUser": "832e30e0-6e1d-4865-bf0e-bb77cbdea39e",
+        "Thumbnail": "https://i.picsum.photos/id/866/200/300.jpg",
+        "Content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
+        "PostRank": 2,
+        "Status": 0,
+        "CreatedAt": null,
+        "UpdatedAt": null,
+        "DeletedAt": null
+    }
+]

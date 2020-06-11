@@ -1,0 +1,19 @@
+<app-header></app-header>
+  <section class="lp" *ngFor="let item of articleDetail">
+    <div class="col" >
+      <div class="blog__content">
+      <h1>{{item.Title}}</h1>
+      
+      <div class="blog__mainText">
+        <!-- <p><span class="blog__mainText__letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet dictum sit amet justo donec. Nulla malesuada pellentesque elit eget gravida cum sociis natoque penatibus. Quam elementum pulvinar etiam non. Iaculis urna id volutpat lacus laoreet non feugiat scelerisque. Lectus nulla at volutpat diam ut venenatis.  </p>
+        <p>Integer feugiat scelerisque varius morbi enim nunc. Nibh ipsum consequat nisl vel pretium lectus quam id leo. Pellentesque sit amet porttitor eget dolor. Lectus nulla at volutpat diam ut venenatis. Nibh tellus molestie nunc non. Ullamcorper malesuada proin libero nunc consequat interdum varius. Orci porta non pulvinar neque. Aliquet nibh praesent. Nulla malesuada pellentesque elit. </p> -->
+        <p>{{item.Content}}</p>
+      </div>
+        </div>
+    </div>
+    <div class="col">
+    <img src="{{item.Thumbnail}}" class="blog__img">
+    </div>
+  </section>
+
+<app-footer></app-footer>

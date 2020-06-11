@@ -10,6 +10,8 @@ import { AuthenticationService } from 'src/app/_services/authentication.service'
 export class HeaderComponent implements OnInit {
 
   currentUser: any;
+  isUser: boolean;
+  name: string;
 
   constructor(
       private router: Router,
@@ -19,6 +21,14 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isUser = false;
+    let currentUser = this.authenticationService.currentUserValue;
+    console.log(currentUser);
+    if (currentUser) {
+      this.isUser = true;
+      this.name = currentUser.userName;
+    } 
+    console.log('header', currentUser);
   }
   logout() {
     this.authenticationService.logout();

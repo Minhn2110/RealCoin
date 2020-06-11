@@ -12,10 +12,11 @@
                         </div>
                         <!-- Top Login & Faq & Earn Monery btn -->
                         <div class="login-faq-earn-money">
-                            <a routerLink="/login">Login | Register</a>
-                            <a href="#">FAQ</a>
+                            <a *ngIf="!isUser" routerLink="/login">Login | Register</a>
+                            <a routerLink="/article">Article</a>
                             <a href="#" >Earn Money</a>
-                            <a class="active" href="#"(click)="logout()">Logout</a>
+                            <a *ngIf="isUser">Hi, {{name}} </a>
+                            <a *ngIf="isUser" class="active" href="#"(click)="logout()">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -49,33 +50,8 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
+                                <li><a routerLink="/dashboard">Home</a></li>
                                 <li><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about-us.html">About Us</a></li>
-                                        <li><a href="blog.html">Articles</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="elements.html">Elements</a></li>
-                                        <li><a href="#">Dropdown</a>
-                                            <ul class="dropdown">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="blog.html">Articles</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                                <li><a href="#">Dropdown</a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="index.html">Home</a></li>
-                                                        <li><a href="about-us.html">About Us</a></li>
-                                                        <li><a href="blog.html">Articles</a></li>
-                                                        <li><a href="contact.html">Contact</a></li>
-                                                        <li><a href="elements.html">Elements</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li><a href="#">Mega Menu</a>
                                     <div class="megamenu">

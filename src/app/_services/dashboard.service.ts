@@ -13,5 +13,13 @@ export class DashboardService {
   getMemberHousehold(householderId: number): Observable<any> {
     return this.http.get<any>(`api/memberunavailables/householdavailability?householderId=` + householderId);
   }
+  getArticle(): Observable<any> {
+    return this.http.get<any>(`https://t1809ecoinmarket20200608234615.azurewebsites.net/api/posts`,  {
+      // headers: {
+      // 'Content-Type': 'application/json; charset=UTF-8',
+      // }
+    });
+  }
+
 
 }

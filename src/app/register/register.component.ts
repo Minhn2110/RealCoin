@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  error = '';
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +33,6 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
-    alert('a');
     console.log(this.registerForm.controls);
     this.authenticationService.register(this.f.email.value, this.f.password.value, this.f.password.value)
     .pipe(first())
@@ -42,6 +43,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       error => {
+        this.error = error.Message;
         console.log(error);
       });
   }

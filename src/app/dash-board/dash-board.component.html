@@ -5,91 +5,181 @@
 <!-- ##### Header Area Start ##### -->
 <app-header></app-header>
 
+<!-- <div id="preloader" *ngIf="loader">
+    <i class="circle-preloader"></i>
+</div> -->
+
 <section class="cryptos-blog-area section-padding-100">
     <div class="container">
         <div class="row align-items-center">
+            
+            <div class="col-12">
+                <div class="cryptos-cool-facts-area">
+                    <div class="row">
+            
+                        <!-- Single Cool Fact -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="single-cool-fact text-center mb-100">
+                                <h3><span class="counter" [countUp]="5553">0</span></h3>
+                                <div class="line"></div>
+                                <h6>Cryptocurrencies</h6>
+                            </div>
+                        </div>
+            
+                        <!-- Single Cool Fact -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="single-cool-fact text-center mb-100">
+                                <h3><span class="counter" [countUp]="275">0</span>Bil</h3>
+                                <div class="line"></div>
+                                <h6>Market cap</h6>
+                            </div>
+                        </div>
+            
+                        <!-- Single Cool Fact -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="single-cool-fact text-center mb-100">
+                                <h3><span class="counter" [countUp]="80">0</span>Bil</h3>
+                                <div class="line"></div>
+                                <h6>24h VoL</h6>
+                            </div>
+                        </div>
+            
+                        <!-- Single Cool Fact -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="single-cool-fact text-center mb-100">
+                                <h3><span class="counter" [countUp]="64">0</span>%</h3>
+                                <div class="line"></div>
+                                <h6>BTC Dominance</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-12 col-lg-7">
                 <div class="blog-area">
-                    <!-- Single Blog Area -->
-                    <div class="single-blog-area d-flex align-items-start">
-                        <!-- Thumbnail -->
-                        <div class="blog-thumbnail">
-                            <img src="./../../assets/img/blog-img/1.jpg" alt="">
-                        </div>
-                        <!-- Content -->
-                        <div class="blog-content">
-                            <a href="#" class="post-title">This Platform Aims to Disrupt the Market</a>
-                            <div class="meta-data">
-                                <a href="#">Crypto News</a> |
-                                <a href="#">March 18, 2018</a>
+                    <div *ngIf="!isUser">
+                        <div class="single-blog-area d-flex align-items-start">
+                            <div class="blog-thumbnail">
+                                <img src="./../../assets/img/blog-img/1.jpg" alt="">
                             </div>
-                            <p>Morbi vel arcu gravida, iaculis lacus vel, posuere ipsum. Sed faucibus mauris vitae urna
-                                consectetur, sit amet maximus nisl sagittis.</p>
+                            <div class="blog-content">
+                                <a href="#" class="post-title">This Platform Aims to Disrupt the Market</a>
+                                <div class="meta-data">
+                                    <a href="#">Crypto News</a> |
+                                    <a href="#">March 18, 2018</a>
+                                </div>
+                                <p>Morbi vel arcu gravida, iaculis lacus vel, posuere ipsum. Sed faucibus mauris vitae urna
+                                    consectetur, sit amet maximus nisl sagittis.</p>
+                            </div>
+                        </div>
+                        <div class="single-blog-area d-flex align-items-start">
+                            <div class="blog-thumbnail">
+                                <img src="./../../assets/img/blog-img/2.jpg" alt="">
+                            </div>
+                            <div class="blog-content">
+                                <a href="#" class="post-title">New Hedge Funds invests in Crypto</a>
+                                <div class="meta-data">
+                                    <a href="#">Crypto News</a> |
+                                    <a href="#">March 18, 2018</a>
+                                </div>
+                                <p>Iaculis lacus vel, posuere ipsum. Sed faucibus mauris vitae urna consectetur, sit amet
+                                    maximus nisl sagittis. Ut in iaculis enim.</p>
+                            </div>
+                        </div>
+                        <div class="single-blog-area d-flex align-items-start">
+                            <div class="blog-thumbnail">
+                                <img src="./../../assets/img/blog-img/3.jpg" alt="">
+                            </div>
+                            <div class="blog-content">
+                                <a href="#" class="post-title">New Hedge Funds invests in Crypto</a>
+                                <div class="meta-data">
+                                    <a href="#">Crypto News</a> |
+                                    <a href="#">March 18, 2018</a>
+                                </div>
+                                <p>Iaculis lacus vel, posuere ipsum. Sed faucibus mauris vitae urna consectetur, sit amet
+                                    maximus nisl sagittis. Ut in iaculis enim.</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- Single Blog Area -->
-                    <div class="single-blog-area d-flex align-items-start">
-                        <!-- Thumbnail -->
-                        <div class="blog-thumbnail">
-                            <img src="./../../assets/img/blog-img/2.jpg" alt="">
-                        </div>
-                        <!-- Content -->
-                        <div class="blog-content">
-                            <a href="#" class="post-title">New Hedge Funds invests in Crypto</a>
-                            <div class="meta-data">
-                                <a href="#">Crypto News</a> |
-                                <a href="#">March 18, 2018</a>
+
+                    <div *ngIf="isUser">
+                        <mat-form-field class="example-form-field">
+                            <mat-label>Filter</mat-label>
+                            <input matInput type="text" [(ngModel)]="searchText" autocomplete="off">
+                            <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </mat-form-field>
+                        <div class="single-blog-area d-flex align-items-start" *ngFor="let item of articleData | filter:searchText | paginate: config">
+                            <div class="blog-thumbnail">
+                                <img src="{{item.Thumbnail}}" alt=""> 
                             </div>
-                            <p>Iaculis lacus vel, posuere ipsum. Sed faucibus mauris vitae urna consectetur, sit amet
-                                maximus nisl sagittis. Ut in iaculis enim.</p>
+                            <div class="blog-content">
+                                <a routerLink="/article/{{item.Id}}" class="post-title">{{item.Title}}</a>
+                                <div class="meta-data">
+                                    <a href="#">Crypto News</a> |
+                                    <a href="#">March 18, 2018</a>
+                                </div>
+                                <p>Morbi vel arcu gravida, iaculis lacus vel, posuere ipsum. Sed faucibus mauris vitae urna
+                                    consectetur, sit amet maximus nisl sagittis.</p>
+                            </div>
+                        </div>
+                        <div class="col text-center">
+                            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
                         </div>
                     </div>
-                    <!-- Single Blog Area -->
-                    <div class="single-blog-area d-flex align-items-start">
-                        <!-- Thumbnail -->
-                        <div class="blog-thumbnail">
-                            <img src="./../../assets/img/blog-img/3.jpg" alt="">
-                        </div>
-                        <!-- Content -->
-                        <div class="blog-content">
-                            <a href="#" class="post-title">This Platform Aims to Disrupt the Market</a>
-                            <div class="meta-data">
-                                <a href="#">Crypto News</a> |
-                                <a href="#">March 18, 2018</a>
-                            </div>
-                            <p>Morbi vel arcu gravida, iaculis lacus vel, posuere ipsum. Sed faucibus mauris vitae urna
-                                consectetur, sit amet maximus nisl sagittis.</p>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
             <!-- Binding Coin Prices -->
             <div class="col-12 col-lg-5">
+                <mat-form-field class="select-exchanges">
+                    <mat-label>Coins</mat-label>
+                    <select matNativeControl required (change)="changeData($event)">
+                        <option value="coinCap">Coin Caps</option>
+                        <option value="cryptoCompare">Crypto Compares</option>
+                    </select>
+                </mat-form-field>
                 <div class="cryptos-prices-table">
-                    <h4>Select Data from Sources</h4>
-                    <mat-form-field>
-                        <mat-label>Coins</mat-label>
-                        <select matNativeControl required (selectionChange)="changeData($event)">
-                            <option value="coinCap">Coin Caps</option>
-                            <option value="cryptoCompare">Crypto Compares</option>
-                        </select>
-                    </mat-form-field>
-                    <div class="single-price-table d-flex align-items-center justify-content-between"
-                        *ngFor="let item of coinData; let i = index" [ngClass]="item.isActive == true ? 'success':'' ">
-                        <div class="p-content d-flex align-items-center">
-                            <span *ngIf="i < 9">0{{i + 1}}</span>
-                            <span *ngIf="i > 8">{{i + 1}}</span>
-                            <img [src]="item.image" alt="">
-                            <p>{{item.Symbol}}
-                                <!-- <span>{{item.symbol}}</span> -->
-                            </p>
+
+                    <div class="firebase-data-wrapper" *ngIf="coinCap">
+                        <div class="single-price-table d-flex align-items-center justify-content-between"
+                            *ngFor="let item of coinData; let i = index"
+                            [ngClass]="item.isActive == true ? 'success':'' ">
+                            <div class="p-content d-flex align-items-center">
+                                <span *ngIf="i < 9">0{{i + 1}}</span>
+                                <span *ngIf="i > 8">{{i + 1}}</span>
+                                <img [src]="item.Thumbnail" alt="">
+                                <p>{{item.Symbol}}
+                                    <!-- <span>{{item.symbol}}</span> -->
+                                </p>
+                            </div>
+                            <div class="price" [ngClass]="item.check == true ? 'increase':''">
+                                <p>${{item.Price | number: '1.2-4'}}</p>
+                            </div>
+                            <!-- [ngClass]="item.check == 'increase'? 'increase':'decrease'" -->
                         </div>
-                        <div class="price" [ngClass]="item.check == true ? 'increase':''">
-                            <p>${{item.Price}}</p>
-                        </div>
-                        <!-- [ngClass]="item.check == 'increase'? 'increase':'decrease'" -->
                     </div>
+                    <div class="firebase-data-wrapper" *ngIf="cryptoCompare">
+                        <div class="single-price-table d-flex align-items-center justify-content-between"
+                            *ngFor="let item of coinDataCryptoComapre; let i = index"
+                            [ngClass]="item.isActive == true ? 'success':'' ">
+                            <div class="p-content d-flex align-items-center">
+                                <span *ngIf="i < 9">0{{i + 1}}</span>
+                                <span *ngIf="i > 8">{{i + 1}}</span>
+                                <img [src]="item.Thumbnail" alt="">
+                                <p>{{item.Symbol}}
+                                    <!-- <span>{{item.symbol}}</span> -->
+                                </p>
+                            </div>
+                            <div class="price" [ngClass]="item.check == true ? 'increase':''">
+                                <p>${{item.Price | number: '1.2-4'}}</p>
+                            </div>
+                            <!-- [ngClass]="item.check == 'increase'? 'increase':'decrease'" -->
+                        </div>
+                    </div>
+                    <app-loader *ngIf="loader"></app-loader>
                 </div>
             </div>
 
@@ -107,7 +197,7 @@
                             Advice & How To’s win the markets.</h6>
                     </div>
                     <form action="#" method="post">
-                        <input type="email" name="email" placeholder="Subscribe to newsletter" autocomplete="off">
+                        <!-- <input type="email" name="email" placeholder="Subscribe to newsletter" autocomplete="off"> -->
                         <!-- <button type="submit">Subscribe</button> -->
                         <div class="paypal_section" #paypal></div>
                     </form>
@@ -117,7 +207,6 @@
             </div>
         </div>
     </div>
-
 </section>
 
 <app-footer></app-footer>
